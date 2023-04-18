@@ -1,28 +1,10 @@
 # Event-Driven Microservices Backend Sample
 
-Proof of Concept for a scalable Local News Application, based on simplified event-driven microservices architecture and Docker containers. :whale:
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rithinch_event-driven-microservices-docker-example&metric=alert_status)](https://sonarcloud.io/dashboard?id=rithinch_event-driven-microservices-docker-example)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/rithinch) 
-[![HitCount](http://hits.dwyl.io/rithinch/Event-Driven-Microservices-Sample.svg)](http://hits.dwyl.io/rithinch/Event-Driven-Microservices-Sample)
-
-[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-
+Proof of Concept for a scalable Local News Application, based on simplified microservices architecture.
 ## Introduction
 
 This repo presents a proof of concept of a highly scalable local news application backend. The application was developed keeping a local news domain in mind, but the principles used can easily be applied to design software solutions for any domain. One of the primary business requirements for a local news application domain is that it has to be blazing fast since news updates are requested very often by customers and it would largely benefit the business if the system architecture can support such scale. After evaluating several different system architectures, a hybrid event-based microservices architecture was designed to meet the requirements. This approach leverages RabbitMQ message broker for events communication between the microservices and all the services are containerized using Docker such that they can independently developed, deployed, monitored and scaled.
 
-## Full Application Backend Demo
-
-[![Video](https://img.youtube.com/vi/F2uVu6hKZTc/0.jpg)](https://www.youtube.com/watch?v=F2uVu6hKZTc)
-
-The following video demo shows all the currently supported features for the proof of concept. It goes through how to run the application stack and perform operations requesting the api's.
-
-Event-based communication samples are highlighted in following two scenario's:
-* When a new article is added through articles-management service, the notification service picks up that event and sends an email to the admin with the article details.
-* When a new user is added through user-management service, the authentication service picks up that event and stores the login details of the user. Demonstrating Atomic Transactions in a Microservices Architecture. 
 
 ## Running the entire application stack
 

@@ -1,17 +1,7 @@
-# Use Node v11.2 as the base image.
-FROM node:11.2.0-alpine
-
-#Set the working directory
-WORKDIR /usr/app
-
-# Copy everything in current directory to /server folder
-ADD . /server
-
-# Install dependencies
-RUN cd /server; \
-    npm install
-
-EXPOSE 3000
-
-# Run node 
-CMD ["node", "/server/src/server.js"]
+FROM node:14
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3002
+CMD ["npm", "start"]

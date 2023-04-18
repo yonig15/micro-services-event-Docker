@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  articles-management:
+    container_name: articles-management
+    build: ./articles-management
+    ports:
+      - 3000:3000
+
+  events-management:
+    container_name: events-management
+    build: ./events-management
+    ports:
+      - 3001:3001
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/events
+
+  user-management:
+    container_name: user-management
+    build: ./user-management
+    ports:
+      - 3002:3002
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/users
+
+  authentication:
+    container_name: authentication
+    build: ./authentication
+    ports:
+      - 3003:3003
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/users
+
+  notification:
+    container_name: notification
+    build: ./notification
+    ports:
+      - 3004:3004
+    environment:
+      - MESSAGE_BUS=amqp://rabbitmq
+      - EMAIL_SERVICE=gmail
+      - EMAIL_ID=noreply.localnewsapplication@gmail.com
+      - EMAIL_PASSWORD=Testing0*
+      - ADMIN_EMAIL=localnewsapp340ct@gmail.com
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9.9-management
+    ports:
+      - 15672:15672
+      - 5672:5672
